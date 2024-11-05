@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>YouTube Video Downloader</title>
+</head>
+<body>
+    <h1>YouTube Video Downloader</h1>
+    <form id="downloadForm">
+        <label for="url">動画URL:</label>
+        <input type="text" id="url" name="url" required><br><br>
+
+        <label for="quality">画質:</label>
+        <select id="quality" name="quality">
+            <option value="720p">720p</option>
+            <option value="480p">480p</option>
+            <option value="360p">360p</option>
+        </select><br><br>
+
+        <label for="audio_only">音声のみ:</label>
+        <input type="checkbox" id="audio_only" name="audio_only"><br><br>
+
+        <button type="submit">ダウンロード</button>
+    </form>
+
+    <div id="downloadResult"></div>
+
+    <script>
+        document.getElementById("downloadForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const response = await fetch("/download", {
+                method: "POST",
+                body: formData
+            });
+
+            const result = await response.json();
+            if (result.status === "complete") {
+                document.getElementById("downloadResult").innerHTML = 
+                    `<p>ダウンロードが完了しました。<a href="/downloads/${result.file_path}" download>ここをクリックしてダウンロード</a></p>`;
+            } else {
+                document.getElementById("downloadResult").innerHTML = `<p>Error: ${result.error}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
