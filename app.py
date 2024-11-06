@@ -25,7 +25,7 @@ def download_video():
         return jsonify({"error": "URLが提供されていません"}), 400
 
     try:
-        yt = YouTube(url)
+        yt = YouTube(url,use_po_token=True)
 
         if audio_only:
             stream = yt.streams.filter(only_audio=True).first()
