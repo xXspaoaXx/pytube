@@ -28,7 +28,6 @@ def download_video():
         po_token = "MnSbccdpy_I1yZtJ_h7BO4fiM1a8tGMi5QVwyO8ymw94S5MvCSTWJLUjorNZ708DB9jOBCslMDr0yfDaTr5QWIc2EMBvwgz6KexXnatFpMBULgMCFcrAUcT-PzeXA4H8rpQ1UhSxw1kRNP1d4k0BgeqzADducA=="
         visitor_data = "Cgt1YXpNSDM1anBpSSj6gbW5BjIKCgJKUBIEGgAgKA%3D%3D"
         yt = YouTube(url,use_po_token=True)
-        yt.set_po_token(po_token, visitor_data)
 
         if audio_only:
             stream = yt.streams.filter(only_audio=True).first()
