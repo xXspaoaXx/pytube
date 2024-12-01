@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, request, url_for
-from pytube import YouTube
+from pytubefix import YouTube
 
 app = Flask(__name__, static_folder="/tmp", static_url_path="/static")
 
