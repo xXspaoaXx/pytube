@@ -15,7 +15,7 @@ def download_video():
     url = request.form.get("url")
     try:
         # YouTubeから動画をダウンロード
-        yt = YouTube(url)
+        yt = YouTube(url, use_po_token=True)
         stream = yt.streams.get_highest_resolution()
         filepath = stream.download(DOWNLOAD_FOLDER)
 
